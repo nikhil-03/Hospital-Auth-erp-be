@@ -5,6 +5,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+#  security:
+#    user:
+#      name: nikhil
+#      password: nikhil
 
   datasource:
     url: jdbc:postgresql://localhost:5432/hospitalerp
@@ -12,4 +16,4 @@ spring:
     password: root
 
 server:
-  port: 8081
+  port: 8082
