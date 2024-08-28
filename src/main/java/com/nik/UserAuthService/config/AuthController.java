@@ -37,6 +37,7 @@ public class AuthController {
     }
     @PostMapping("/validate")
     public ResponseEntity<Boolean> validateToken(@RequestBody String token) {
+        System.out.println("Hit from other source");
         try {
             String username = helper.getUsernameFromToken(token);
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
