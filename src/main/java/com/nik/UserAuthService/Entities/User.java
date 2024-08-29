@@ -1,8 +1,6 @@
 package com.nik.UserAuthService.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -13,9 +11,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "user_auth")
+@Builder
 public class User {
     @Id
-    private String id;
+    private String userId;
     private String username;
     private String password;
     private String role;
