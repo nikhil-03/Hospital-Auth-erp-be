@@ -16,7 +16,6 @@ public class TestController {
     @PostMapping
     public ResponseEntity<User> registerUser(@RequestBody User user){
         User user1=userAuthServices.addUser(user);
-
         return ResponseEntity.ok(user1);
     }
      @GetMapping("/users")

@@ -58,11 +58,7 @@ public class userAuthServicesImpl implements UserAuthServices, UserDetailsServic
     }
 
     private List<User> users=new ArrayList<>();
-    public userAuthServicesImpl() {
-        users.add(new User(UUID.randomUUID().toString(),"nikhil","nikhil","admin",true, LocalDate.now()));
-        users.add(new User(UUID.randomUUID().toString(),"prakash","nikhil","admin",true, LocalDate.now()));
-        users.add(new User(UUID.randomUUID().toString(),"dji","nikhil","admin",true, LocalDate.now()));
-    }
+
     @Override
     public List<User> customData() {
         return this.users;

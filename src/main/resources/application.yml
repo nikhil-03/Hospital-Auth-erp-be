@@ -5,15 +5,14 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-#  security:
-#    user:
-#      name: nikhil
-#      password: nikhil
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/hospitalerp
-    username: postgres
-    password: root
+    url: jdbc:postgresql://ep-cool-flower-a5qcy8vy.us-east-2.aws.neon.tech:5432/neondb?sslmode=require
+    username: neondb_owner
+    password: rNcmI7eqMY3B
+#    url: jdbc:postgresql://localhost:5432/hospitalerp
+#    username: postgres
+#    password: root
 
 server:
   port: 8082
+
