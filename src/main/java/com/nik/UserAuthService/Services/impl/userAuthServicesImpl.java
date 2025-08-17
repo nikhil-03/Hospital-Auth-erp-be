@@ -27,14 +27,15 @@ public class userAuthServicesImpl implements UserAuthServices, UserDetailsServic
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
                 .map(user -> CustomUserDetails.builder()
-                        .username(user.getUsername())
+                        .username(user.getEmail())
                         .password(user.getPassword())
-                        .role(user.getRole())
+                        .role(user.getRole().toString())
                         .build())
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
+
     }
 
     @Override
@@ -44,7 +45,7 @@ public class userAuthServicesImpl implements UserAuthServices, UserDetailsServic
 
     @Override
     public User addUser(User user) {
-        user.setJoiningDate(LocalDate.now());
+        user.setRegistrationDate(LocalDate.now());
         user.setUserId(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);

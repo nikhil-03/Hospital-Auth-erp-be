@@ -1,6 +1,7 @@
 package com.nik.UserAuthService.Entities;
 
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,8 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Builder
+@Getter
+
 public class CustomUserDetails implements UserDetails {
     private String username;
     private String password;

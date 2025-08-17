@@ -1,18 +1,27 @@
 spring:
   application:
     name: UserAuthService
+    # application.properties
+
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://ep-cool-flower-a5qcy8vy.us-east-2.aws.neon.tech:5432/neondb?sslmode=require
-    username: neondb_owner
-    password: rNcmI7eqMY3B
+    url: jdbc:postgresql://localhost:5432/userManagement
+    username: postgres
+    password: root
+#  datasource:
+#    url: jdbc:postgresql://ep-cool-flower-a5qcy8vy.us-east-2.aws.neon.tech:5432/neondb?sslmode=require
+#    username: neondb_owner
+#    password: rNcmI7eqMY3B
 #    url: jdbc:postgresql://localhost:5432/hospitalerp
 #    username: postgres
 #    password: root
 
 server:
   port: 8082
+
+
+
 

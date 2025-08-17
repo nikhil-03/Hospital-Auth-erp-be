@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.List;
 
 public interface UserAuthServices {
-    UserDetails loadUserByUsername(String username);
+    UserDetails loadUserByUsername(String email);
 
     User findByID(String ID);
 

@@ -1,5 +1,6 @@
 package com.nik.UserAuthService.config;
 
+import com.nik.UserAuthService.Entities.CustomUserDetails;
 import com.nik.UserAuthService.Entities.JwtRequest;
 import com.nik.UserAuthService.Entities.JwtResponse;
 import com.nik.UserAuthService.Services.UserAuthServices;
@@ -12,13 +13,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost:5173", "http://localhost:4173", "http://127.0.0.1:5173", "http://127.0.0.1:3000"}, allowCredentials = "true")
 public class AuthController {
     @Autowired
     private UserAuthServices userDetailsService;
@@ -29,14 +30,22 @@ public class AuthController {
     private final Logger logger = (Logger) LoggerFactory.getLogger(AuthController.class);
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody JwtRequest request) {
+        String role="NA";
        try {
            this.doAuthenticate(request.getEmail(), request.getPassword());
            UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
            logger.warn("Here is userDetails {}",userDetails.getUsername());
            String token = this.helper.generateToken(userDetails);
+
+           if (userDetails instanceof CustomUserDetails) {
+               role = ((CustomUserDetails) userDetails).getRole();
+           }
+
            JwtResponse response = JwtResponse.builder()
                    .jwtToken(token)
-                   .username(userDetails.getUsername()).build();
+                   .username(userDetails.getUsername())
+                   .role(role).build();
+
            return new ResponseEntity<>(response, HttpStatus.OK);
        }
        catch (UsernameNotFoundException e) {
